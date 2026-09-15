@@ -19,6 +19,7 @@ const (
 	keyVSVersion   = "cmake.compiler.vs.version"
 	keyCmakeBin    = "cmake.bin"
 	keyCmakeEnv    = "cmake.compiler.env"
+	keyCmakeEnvKV  = "cmake.compiler.envKeyValue"
 	keyCmakeC      = "cmake.compiler.c"
 	keyCmakeCxx    = "cmake.compiler.cxx"
 	keyConfigTypes = "configuration"
@@ -106,6 +107,24 @@ func (c *Config) CmakeEnv() string {
 		return s
 	}
 	return ""
+}
+
+// CmakeEnvKeyValue 返回需要设置的环境变量 K=V 列表；未配置或类型错误时返回 nil。
+// 调用方应在第一个 "=" 处拆分键值（值本身可能包含 "="）。
+func (c *Config) CmakeEnvKeyValue() []string {
+	arr, ok := c.lookup(keyCmakeEnvKV).([]any)
+	if !ok {
+		return nil
+	}
+	out := make([]string, 0, len(arr))
+	for _, item := range arr {
+		s, ok := item.(string)
+		if !ok {
+			return nil
+		}
+		out = append(out, s)
+	}
+	return out
 }
 
 func (c *Config) CCompiler() string {

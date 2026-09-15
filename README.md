@@ -99,6 +99,7 @@ gmk check format [-f]            # 检查是否存在 .clang-format，不存在�
         "cmake.compiler.vs.version": "17.0"
     },
     "cmake.compiler.env": "",
+    "cmake.compiler.envKeyValue": [],
     "cmake.compiler.c": "",
     "cmake.compiler.cxx": "",
     "configuration": {
@@ -131,6 +132,7 @@ gmk check format [-f]            # 检查是否存在 .clang-format，不存在�
 | `cmake.compiler.vswhere.path` | vswhere.exe 路径，留空使用默认安装路径 |
 | `cmake.compiler.vs.version` | VS 版本号（如 17.0 = VS2022），留空使用最新版本 |
 | `cmake.compiler.env` | 追加到 PATH 的目录，多个路径用分号分隔 |
+| `cmake.compiler.envKeyValue` | 需要设置的环境变量，格式 `K=V`，支持多对，如 `["CXX=cl", "CC=clang"]`；优先级高于 VS 缓存环境 |
 | `cmake.compiler.c` / `cmake.compiler.cxx` | C/C++ 编译器路径 |
 | `configuration.<Type>.build.directory` | 构建目录，默认为 `build` |
 | `configuration.<Type>.cmake.prefix.append` | 追加到 `CMAKE_PREFIX_PATH` 的路径 |

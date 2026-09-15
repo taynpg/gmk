@@ -279,6 +279,8 @@ func (e *Engine) removeTemp(root string) error {
 // prepareEnv 准备子进程环境：
 // VS 模式返回缓存环境（overlay）并把额外 PATH 合并进 Path；
 // 非 VS 模式 overlay 为 nil，额外路径走 appendPath 追加到当前 PATH。
+// 用户配置的 cmake.compiler.envKeyValue（K=V）会进入 overlay，
+// 优先级高于 VS 缓存环境（用户显式配置优先）。
 func (e *Engine) prepareEnv() (map[string]string, []string) {
 	var overlay map[string]string
 	if len(e.vsEnv) > 0 {
@@ -286,6 +288,31 @@ func (e *Engine) prepareEnv() (map[string]string, []string) {
 		for k, v := range e.vsEnv {
 			overlay[k] = v
 		}
+	}
+
+	// 应用用户配置的 K=V 环境变量（优先级高于 VS 缓存环境）。
+	// 在第一个 "=" 处拆分，值可以为空也可以再含 "="。
+	for _, kv := range e.cfg.CmakeEnvKeyValue() {
+		k, v, ok := strings.Cut(kv, "=")
+		if !ok {
+			logger.Errorf("配置项 [cmake.compiler.envKeyValue] 格式无效（缺少 '='）: %q", kv)
+			continue
+		}
+		if k = strings.TrimSpace(k); k == "" {
+			logger.Errorf("配置项 [cmake.compiler.envKeyValue] 键为空: %q", kv)
+			continue
+		}
+		if overlay == nil {
+			overlay = make(map[string]string)
+		}
+		// 大小写不敏感地覆盖同名键（Windows 环境变量名大小写不敏感）
+		for existing := range overlay {
+			if strings.EqualFold(existing, k) {
+				delete(overlay, existing)
+				break
+			}
+		}
+		overlay[k] = strings.TrimSpace(v)
 	}
 
 	var extras []string
