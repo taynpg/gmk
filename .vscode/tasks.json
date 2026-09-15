@@ -1,0 +1,29 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "build gmk (debug)",
+            "type": "shell",
+            "command": "go",
+            "args": ["build", "-gcflags=all=-N -l", "-o", "gmk.exe", "."],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": ["$go"]
+        },
+        {
+            "label": "build gmk (release)",
+            "type": "shell",
+            "command": "go",
+            "args": ["build", "-o", "gmk.exe", "."],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": ["$go"]
+        }
+    ]
+}

@@ -1,0 +1,5 @@
+*.exe
+# ---> gmk
+gmk_cache
+gmk_temp
+build*

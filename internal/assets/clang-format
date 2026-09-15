@@ -1,0 +1,41 @@
+BasedOnStyle: LLVM
+
+IndentWidth: 4
+TabWidth: 4
+PointerAlignment: Left
+AccessModifierOffset: -4
+
+ReflowComments: true
+SpacesBeforeTrailingComments: 3
+ConstructorInitializerIndentWidth: 4
+
+BreakConstructorInitializers: BeforeComma
+ConstructorInitializerAllOnOneLineOrOnePerLine: true
+
+AllowShortEnumsOnASingleLine: false
+AllowAllArgumentsOnNextLine: false
+AllowAllParametersOfDeclarationOnNextLine: false
+AllowShortBlocksOnASingleLine: Never
+AllowShortCaseLabelsOnASingleLine: false
+AllowShortIfStatementsOnASingleLine: Never
+AllowShortLambdasOnASingleLine: Empty
+AllowShortLoopsOnASingleLine: false
+AlwaysBreakTemplateDeclarations: Yes
+AllowShortFunctionsOnASingleLine: InlineOnly
+Cpp11BracedListStyle: true
+AlignAfterOpenBracket: AlwaysBreak
+
+BreakBeforeBraces: Custom
+BraceWrapping:
+    AfterFunction: true
+    AfterClass: true
+
+ColumnLimit: 100
+
+
+IncludeBlocks: Regroup
+IncludeCategories:
+  - Regex: '^<.*>'
+    Priority: 1
+  - Regex: '^".*"'
+    Priority: 2

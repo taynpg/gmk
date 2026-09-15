@@ -1,0 +1,60 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "gmk: config (cmk)",
+            "type": "go",
+            "request": "launch",
+            "mode": "debug",
+            "program": "${workspaceFolder}",
+            "cwd": "d:/demo",
+            "args": ["config", "-t", "Debug"],
+            "console": "integratedTerminal",
+            "showLog": true
+        },
+        {
+            "name": "gmk: build (cmk)",
+            "type": "go",
+            "request": "launch",
+            "mode": "debug",
+            "program": "${workspaceFolder}",
+            "cwd": "d:/demo",
+            "args": ["build", "-t", "Debug"],
+            "console": "integratedTerminal",
+            "showLog": true
+        },
+        {
+            "name": "gmk: config auto -f",
+            "type": "go",
+            "request": "launch",
+            "mode": "debug",
+            "program": "${workspaceFolder}",
+            "cwd": "d:/demo",
+            "args": ["config", "auto", "-f"],
+            "console": "integratedTerminal",
+            "showLog": true
+        },
+        {
+            "name": "gmk: no args (replay)",
+            "type": "go",
+            "request": "launch",
+            "mode": "debug",
+            "program": "${workspaceFolder}",
+            "cwd": "d:/demo",
+            "args": [],
+            "console": "integratedTerminal",
+            "showLog": true
+        },
+        {
+            "name": "gmk: custom args",
+            "type": "go",
+            "request": "launch",
+            "mode": "debug",
+            "program": "${workspaceFolder}",
+            "cwd": "d:/demo",
+            "args": [],
+            "console": "integratedTerminal",
+            "showLog": true
+        }
+    ]
+}
